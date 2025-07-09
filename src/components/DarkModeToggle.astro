@@ -1,0 +1,52 @@
+---
+// src/components/DarkModeToggle.astro
+---
+<button id="theme-toggle" class="p-2 rounded-md text-foreground hover:bg-black/10 dark:hover:bg-white/10" aria-label="Ganti tema terang/gelap">
+  <svg id="theme-toggle-dark-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+  </svg>
+<svg id="theme-toggle-light-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1.5M12 19.5V21M4.22 4.22l1.06 1.06M18.72 18.72l1.06 1.06M3 12h1.5M19.5 12H21M4.22 19.78l1.06-1.06M18.72 5.28l1.06-1.06M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+</svg>
+
+</button>
+
+
+
+<script is:inline>
+  function setupDarkModeToggle() {
+    const btn = document.getElementById('theme-toggle');
+    const iconLight = document.getElementById('theme-toggle-light-icon');
+    const iconDark = document.getElementById('theme-toggle-dark-icon');
+    if (!btn || !iconLight || !iconDark) return;
+
+    // Fungsi untuk menerapkan tema & update ikon
+    const applyTheme = () => {
+      const userPref = localStorage.getItem('color-theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = userPref === 'dark' || (!userPref && systemDark);
+
+      document.documentElement.classList.toggle('dark', isDark);
+      iconDark.classList.toggle('hidden', !isDark);
+      iconLight.classList.toggle('hidden', isDark);
+    };
+
+    applyTheme();
+
+    if (!btn._hasListener) {
+      btn.addEventListener('click', () => {
+        const isNowDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('color-theme', isNowDark ? 'dark' : 'light');
+        applyTheme();
+      });
+      btn._hasListener = true;
+    }
+  }
+
+  // Jalankan saat halaman baru selesai swap (client router Astro)
+  document.addEventListener('astro:after-swap', setupDarkModeToggle);
+  // Jalankan sekali saat halaman pertama kali dimuat
+  if (typeof window !== 'undefined') {
+    setupDarkModeToggle();
+  }
+</script>

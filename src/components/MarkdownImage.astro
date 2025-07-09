@@ -1,0 +1,24 @@
+---
+// src/components/MarkdownImage.astro
+import { Image, inferRemoteSize } from "astro:assets";
+
+interface Props {
+  src: string;
+  alt: string;
+}
+
+const { src, alt } = Astro.props;
+
+// Astro akan secara otomatis mencari tahu lebar dan tinggi gambar dari URL remote
+const { width, height } = await inferRemoteSize(src);
+---
+<div class="my-6"> {/* Memberi sedikit jarak atas-bawah pada gambar */}
+  <Image 
+    src={src} 
+    alt={alt}
+    width={width}
+    height={height}
+    layout="constrained"
+    class="rounded-lg shadow-md mx-auto"
+  />
+</div>

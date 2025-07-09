@@ -1,0 +1,74 @@
+---
+// src/components/search-form.astro (VERSI BARU DENGAN TAILWIND)
+---
+<div class="relative w-full">
+    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+        <svg class="h-5 w-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    </div>
+
+    <input type="text" id="search-input" placeholder="Contoh: renovasi dapur" class="block w-full pl-12 pr-4 py-3 border border-slate-300 rounded-full text-lg focus:ring-2 focus:ring-orange-300 focus:border-maunguli-orange transition-all" />
+</div>
+
+<ul id="search-results" class="mt-4 space-y-3">
+    </ul>
+
+
+<script>
+  import Fuse from 'fuse.js';
+
+  interface Post {
+    slug: string;
+    title: string;
+    description: string;
+  }
+
+  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const searchResults = document.getElementById('search-results') as HTMLUListElement;
+  let fuse: Fuse<Post>;
+
+  async function initFuse() {
+    try {
+      const response = await fetch('/api/search.json');
+      const posts: Post[] = await response.json();
+      
+      const options = {
+        keys: ['title', 'description'],
+        includeScore: true,
+        threshold: 0.4,
+      };
+      fuse = new Fuse(posts, options);
+    } catch (error) {
+      console.error("Gagal memuat indeks pencarian:", error);
+    }
+  }
+
+  initFuse();
+
+  searchInput.addEventListener('input', () => {
+    if (!fuse) return;
+    const query = searchInput.value.trim();
+    
+    if (query.length < 2) {
+      searchResults.innerHTML = '';
+      return;
+    }
+    
+    const results = fuse.search(query);
+    searchResults.innerHTML = ''; 
+    
+    if (results.length === 0) {
+      searchResults.innerHTML = '<li class="text-center text-slate-500 py-4">Tidak ada hasil ditemukan.</li>';
+    } else {
+      results.slice(0, 5).forEach(({ item }) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <a href="/posts/${item.slug}/" class="block bg-white p-4 rounded-lg border border-slate-200 hover:border-maunguli-orange hover:shadow-sm transition-all">
+            <h3 class="font-semibold text-maunguli-dark group-hover:text-maunguli-orange">${item.title}</h3>
+            <p class="text-sm text-maunguli-subtle mt-1">${item.description}</p>
+          </a>
+        `;
+        searchResults.appendChild(li);
+      });
+    }
+  });
+</script>

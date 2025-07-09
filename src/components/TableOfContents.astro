@@ -1,0 +1,29 @@
+---
+// src/components/TableOfContents.astro
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+// Filter hanya untuk heading h2 dan h3
+const filteredHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+---
+{filteredHeadings.length > 0 && (
+  <div class="p-6 bg-background border border-foreground/10 rounded-lg">
+    <h3 class="text-xl font-bold text-foreground mb-4">Daftar Isi</h3>
+    <ul class="space-y-2">
+      {filteredHeadings.map(heading => (
+        <li class-list={[
+            'font-semibold',
+            {'pl-4': heading.depth === 3},
+        ]}>
+          <a href={`#${heading.slug}`} class="text-muted-foreground hover:text-primary transition-colors text-base">
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}

@@ -1,0 +1,117 @@
+---
+// src/pages/[...page].astro
+
+import { getCollection, type CollectionEntry } from "astro:content";
+import type { Page, GetStaticPathsOptions } from "astro"; // <-- TAMBAHKAN GetStaticPathsOptions DI SINI
+import Layout from "../layouts/Layout.astro";
+
+// --- BAGIAN LOGIKA PAGINASI ---
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) { // <-- TERAPKAN TIPE DI SINI
+  const allPosts = await getCollection("posts", ({ data }) => {
+    return data.pubDate <= new Date();
+  });
+
+  allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  return paginate(allPosts, { pageSize: 6 });
+}
+
+// --- BAGIAN PROPS (Ini sudah benar) ---
+interface Props {
+  page: Page<CollectionEntry<"posts">>;
+}
+const { page } = Astro.props;
+---
+
+<Layout title="Blog Maunguli">
+  <main class="py-12 sm:py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-foreground">
+          Blog Maunguli
+        </h1>
+        <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          Wawasan, inspirasi, dan tips praktis seputar dunia konstruksi dan
+          renovasi.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          page.data.map((post) => (
+            <article class="bg-card rounded-xl border border-foreground/10 overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              {post.data.image && (
+                <a href={`/posts/${post.slug}/`} class="block">
+                  <img
+                    src={post.data.image.url}
+                    alt={post.data.image.alt}
+                    class="w-full h-48 object-cover"
+                  />
+                </a>
+              )}
+
+              <div class="p-6 flex flex-col flex-grow">
+                <div class="flex justify-between items-center text-sm mb-3">
+                  <p class="font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                    {post.data.category}
+                  </p>
+                  <p class="text-muted-foreground">
+                    {post.data.pubDate.toLocaleDateString("id-ID", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </p>
+                </div>
+                <h2 class="text-xl font-bold text-foreground leading-tight mb-2">
+                  <a
+                    href={`/posts/${post.slug}/`}
+                    class="hover:text-primary transition-colors"
+                  >
+                    {post.data.title}
+                  </a>
+                </h2>
+                <p class="text-muted-foreground text-base flex-grow mb-4">
+                  {post.data.description}
+                </p>
+                <a
+                  href={`/posts/${post.slug}/`}
+                  class="font-semibold text-primary inline-flex items-center group-hover:translate-x-1 transition-transform"
+                >
+                  Baca Selengkapnya
+                  <svg class="ml-1 w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14"></path>
+                      <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="mt-16 flex justify-center items-center gap-4">
+        {
+          page.url.prev && (
+            <a
+              href={page.url.prev}
+              class="px-5 py-2 bg-background border border-foreground/20 rounded-md text-foreground font-semibold hover:bg-foreground/10 transition-colors"
+            >
+              ← Sebelumnya
+            </a>
+          )
+        }
+        {
+          page.url.next && (
+            <a
+              href={page.url.next}
+              class="px-5 py-2 bg-background border border-foreground/20 rounded-md text-foreground font-semibold hover:bg-foreground/10 transition-colors"
+            >
+              Selanjutnya →
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </main>
+</Layout>

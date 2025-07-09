@@ -1,22 +1,119 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+// src/layouts/Layout.astro
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Seo from "../components/Seo.astro";
+import "../styles/global.css";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+}
+const { title, description, image, noindex, nofollow } = Astro.props;
+---
+
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    {/* ... (isi <head> Anda dengan <Seo />, <ViewTransitions />, dll.) ... */}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <Seo
+      title={title}
+      description={description}
+      image={image}
+      noindex={noindex}
+      nofollow={nofollow}
+    />
+    <slot name="head-schema" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+    />
+
+    <ClientRouter />
+  </head>
+  <body class="bg-background text-muted-foreground">
+    <Header transition:persist />
+
+    <nav
+      id="mobile-menu-drawer"
+      class="fixed top-0 right-0 h-full w-72 bg-background z-40 transform translate-x-full transition-transform duration-300 ease-in-out"
+    >
+      <div
+        class="flex flex-col items-center justify-center h-full gap-8 text-2xl font-semibold"
+      >
+        <a href="/#blog" class="text-foreground">Beranda Blog</a>
+        <a href="/category" class="text-foreground">Kategori</a>
+        <a href="/search" class="text-foreground">Pencarian</a>
+        <a
+          href="https://www.maunguli.com"
+          class="text-muted-foreground text-lg mt-8">← Kembali ke Situs Utama</a
+        >
+      </div>
+    </nav>
+    <div
+      id="mobile-menu-overlay"
+      class="fixed inset-0 bg-black/50 z-30 opacity-0 invisible transition-opacity duration-300"
+    >
+    </div>
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+
+    <script>
+      // Script untuk menu mobile yang sudah kita perbaiki sebelumnya
+      function initMobileMenu() {
+        const burgerButton = document.getElementById("mobile-menu-button");
+        const drawer = document.getElementById("mobile-menu-drawer");
+        const overlay = document.getElementById("mobile-menu-overlay");
+        const openIcon = document.getElementById("menu-open-icon");
+        const closeIcon = document.getElementById("menu-close-icon");
+
+        function toggleMenu(show: boolean) {
+          if (!drawer || !overlay || !openIcon || !closeIcon) return;
+          drawer.classList.toggle("translate-x-full", !show);
+          overlay.classList.toggle("opacity-0", !show);
+          overlay.classList.toggle("invisible", !show);
+          openIcon.classList.toggle("hidden", show);
+          closeIcon.classList.toggle("hidden", !show);
+          document.body.classList.toggle("overflow-hidden", show);
+        }
+
+        function handleBurgerClick(e: MouseEvent) {
+          e.stopPropagation();
+          const isActive = !drawer?.classList.contains("translate-x-full");
+          toggleMenu(!isActive);
+        }
+        function handleOverlayClick() {
+          toggleMenu(false);
+        }
+
+        if (burgerButton) {
+          burgerButton.removeEventListener("click", handleBurgerClick);
+          burgerButton.addEventListener("click", handleBurgerClick);
+        }
+        if (overlay) {
+          overlay.removeEventListener("click", handleOverlayClick);
+          overlay.addEventListener("click", handleOverlayClick);
+        }
+      }
+      document.addEventListener("astro:page-load", initMobileMenu);
+    </script>
+  </body>
+</html>

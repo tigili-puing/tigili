@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const allPosts = await getCollection('posts');
+const categories = [...new Set(allPosts.map(post => post.data.category))];
+---
+<Layout title="Semua Kategori">
+  <main class="container mx-auto px-4 py-12 sm:py-16">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-maunguli-dark">Kategori Artikel</h1>
+      <p class="mt-4 text-lg text-maunguli-subtle max-w-2xl mx-auto">
+        Jelajahi semua topik yang kami bahas, dari tips praktis hingga inspirasi desain.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 background">
+      {categories.map(category => {
+        const slug = category.toLowerCase().replace(/ /g, '-');
+        return (
+          <a href={`/category/${slug}`} class="text-pr p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-maunguli-orange border-l-4 border-transparent group">
+            <h2 class="text-xl font-bold text-maunguli-dark group-hover:text-maunguli-orange transition-colors">
+              {category}
+            </h2>
+          </a>
+        )
+      })}
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "golang-p"
+  },
+  "targets": {
+    "golang-p": {
+      "hosting": {
+        "blog": [
+          "my-astro"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

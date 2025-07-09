@@ -1,0 +1,58 @@
+---
+// src/components/Seo.astro
+import { SEO } from "astro-seo";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+}
+
+const {
+  title,
+  description = "Wawasan, inspirasi, dan tips praktis seputar dunia konstruksi dan renovasi dari Maunguli.",
+  image = "/default-social-image.jpg",
+  noindex = false,
+  nofollow = false,
+} = Astro.props;
+
+// Membuat URL absolut untuk gambar
+const imageUrl = new URL(image, Astro.site).href;
+---
+<SEO
+  title={title}
+  titleTemplate="%s | Blog Maunguli"
+  description={description}
+  noindex={noindex}
+  nofollow={nofollow}
+  
+  openGraph={{
+    basic: {
+      title: `${title} | Blog Maunguli`,
+      type: "website",
+      image: imageUrl, // URL gambar sebagai string
+    },
+    optional: {
+      description: description,
+      siteName: "Blog Maunguli",
+    },
+    // Objek 'image' terpisah untuk detail meta
+    image: {
+      url: imageUrl,
+      width: 1200,
+      height: 630,
+      alt: description,
+    },
+  }}
+
+  twitter={{
+    creator: "@Maunguli",
+    card: "summary_large_image",
+  }}
+  
+  extend={{
+    link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
+  }}
+/>

@@ -1,0 +1,19 @@
+{
+  "hosting": {
+    "target": "blog",
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "errorHandlers": [
+      {
+        "code": "404",
+        "file": "/404.html"
+      }
+    ]
+  }
+}

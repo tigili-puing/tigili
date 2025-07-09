@@ -1,0 +1,160 @@
+---
+// src/pages/posts/[slug].astro (VERSI LENGKAP DENGAN SEMUA FITUR + SCHEMA)
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
+import SocialShare from "../../components/SocialShare.astro";
+import FacebookComments from "../../components/FacebookComments.astro";
+import { YouTube } from "@astro-community/astro-embed-youtube";
+import CallToAction from "../../components/CallToAction.astro";
+import Prose from "../../components/Prose.astro";
+
+// --- Mendapatkan semua path untuk halaman ---
+export async function getStaticPaths() {
+  const allPosts = await getCollection("posts");
+  return allPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+// --- Perbaikan TypeScript & Logika Halaman ---
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+const { post } = Astro.props;
+const { Content, headings } = await post.render();
+
+// --- Logika untuk Sidebar ---
+const allPosts = await getCollection("posts");
+const relatedPosts = allPosts
+  .filter((p) => p.data.category === post.data.category && p.slug !== post.slug)
+  .slice(0, 5);
+const categories = [...new Set(allPosts.map((p) => p.data.category))].sort();
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": Astro.url.href,
+  },
+  headline: post.data.title,
+  description: post.data.description,
+  image: [new URL(post.data.image!.url, Astro.site).href],
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: post.data.pubDate.toISOString(),
+  author: {
+    "@type": "Person",
+    name: post.data.author,
+    url: `${Astro.site}/about`,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Maunguli",
+    logo: {
+      "@type": "ImageObject",
+      url: new URL("/logo-maunguli.png", Astro.site).href,
+    },
+  },
+};
+---
+
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.image?.url}
+>
+  <Fragment slot="head-schema">
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-4 lg:gap-8 xl:gap-12">
+      <aside class="hidden lg:block lg:col-span-1">
+        <div class="sticky top-28">
+          <TableOfContents headings={headings} />
+        </div>
+      </aside>
+
+      <div class="lg:col-span-3">
+        <article
+          class="bg-card p-6 sm:p-8 rounded-xl border border-foreground/10"
+        >
+          <header class="text-center mb-8 md:mb-12">
+            <div class="mb-4 text-sm font-semibold text-primary uppercase">
+              <a
+                href={`/category/${post.data.category.toLowerCase().replace(/ /g, "-")}`}
+                class="hover:underline"
+              >
+                {post.data.category}
+              </a>
+            </div>
+
+            <h1
+              class="mt-4 text-3xl md:text-4xl font-bold tracking-tight text-foreground"
+            >
+              {post.data.title}
+            </h1>
+
+            <p class="mt-6 text-base text-muted-foreground">
+              Ditulis oleh {post.data.author} pada {
+                post.data.pubDate.toLocaleDateString("id-ID", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              }
+            </p>
+          </header>
+
+          {
+            post.data.youtubeId && (
+              <div class="my-8 aspect-video">
+                <YouTube id={post.data.youtubeId} />
+              </div>
+            )
+          }
+
+          <Prose>
+            <Content />
+          </Prose>
+        </article>
+
+        <div class="mt-12 pt-8 border-t border-foreground/10">
+          <SocialShare title={post.data.title} />
+        </div>
+        <CallToAction />
+
+        <div class="mt-12 pt-8 border-t border-foreground/10">
+          <h3 class="text-2xl font-bold text-foreground mb-4">
+            Tinggalkan Komentar
+          </h3>
+          <FacebookComments url={Astro.url.href} />
+        </div>
+      </div>
+
+      <aside class="mt-12">
+        <h2
+          class="text-2xl font-bold text-foreground pb-3 mb-4 border-b border-foreground/10"
+        >
+          Postingan Terkait
+        </h2>
+        <ul class="list-none p-0 m-0 flex flex-col gap-3">
+          {
+            relatedPosts.map((related) => (
+              <li>
+                <a
+                  href={`/posts/${related.slug}/`}
+                  class="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {related.data.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </aside>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,60 @@
+/* src/styles/input.css */
+
+/* ------------------------------------------------------------- */
+/* LANGKAH 1: DEFINISIKAN CUSTOM PROPERTIES (VARIABEL CSS)       */
+/* Bagian ini tetap sama dan sudah benar.                        */
+/* ------------------------------------------------------------- */
+:root {
+  --color-primary-val: #C2410C;
+  --color-secondary-val: #F2A30F;
+  --color-background-val: #ffffff;
+  --color-foreground-val: #402E32;
+  --color-muted-foreground-val:  #475569;
+  --color-card-val: #ffffff;
+}
+
+.dark {
+  --color-background-val: #2D2325;
+  --color-primary-darker-val: #F25C05;
+  --color-foreground-val: #e2e8f0;
+  --color-muted-foreground-val: #94a3b8;
+  --color-card-val: #3a2d2f;
+}
+
+/* ------------------------------------------------------------- */
+/* LANGKAH 2: IMPOR & KONFIGURASI TAILWIND                       */
+/* ------------------------------------------------------------- */
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
+
+/*
+  Gunakan "@theme inline" untuk memberitahu Tailwind agar membuat
+  kelas utilitas yang nilainya diambil dari variabel CSS kita.
+  TIDAK ADA "extend:{}". Variabel didefinisikan langsung.
+*/
+@theme inline {
+  --color-primary: var(--color-primary-val);
+   --color-primary-darker: var(--color-primary-darker-val);
+  --color-secondary: var(--color-secondary-val);
+  --color-background: var(--color-background-val);
+  --color-foreground: var(--color-foreground-val);
+  --color-muted-foreground: var(--color-muted-foreground-val);
+  --color-card: var(--color-card-val);
+}
+
+/* ------------------------------------------------------------- */
+/* LANGKAH 3: TERAPKAN WARNA DASAR KE BODY (Opsional)            */
+/* ------------------------------------------------------------- */
+body {
+  background-color: var(--color-background-val);
+  color: var(--color-foreground-val);
+  transition: color, background-color 0.3s;
+}
+
+.prose a {
+  @apply text-primary hover:opacity-80;
+}
+
+.prose blockquote {
+  @apply border-l-primary text-muted-foreground;
+}
