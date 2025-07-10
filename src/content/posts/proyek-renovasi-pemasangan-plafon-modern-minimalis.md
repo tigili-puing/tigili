@@ -9,14 +9,18 @@ image:
   url: https://cdn.maunguli.com/cdn?src=images/posts/pemasngan-plafon-minimalis.jpeg&format=webp
   alt: Plafon drop ceiling
 ---
-# ✨ Proyek Renovasi: Pemasangan Plafon Modern Minimalis
+# ✨ Proyek Renovasi: Pemasangan Plafon Modern Minimalis di Kamar Utama
 
-Pada salah satu proyek renovasi rumah terbaru kami, tim **Maunguli** dipercaya untuk melakukan pemasangan plafon di area ruang dalam rumah. Proyek ini mengusung konsep **plafon modern minimalis** yang memberikan kesan bersih, rapi, dan elegan.
+Pada salah satu proyek renovasi rumah terbaru kami, tim **Maunguli** dipercaya untuk melakukan pemasangan plafon di kamar utama rumah klien. Proyek ini mengusung konsep **plafon modern minimalis** yang memberikan kesan bersih, rapi, dan elegan, serta memaksimalkan pencahayaan ruangan.
+
+Kamar ini memiliki ukuran **3,5 x 5 meter** dengan ketinggian bangunan lebih dari **4 meter**. Oleh karena itu, kami menggunakan **perancah bambu** sebagai solusi efektif untuk menjangkau area kerja di ketinggian secara aman dan efisien.
 
 ## 📌 Detail Proyek
 
 - **Jenis pekerjaan**: Renovasi plafon gypsum drop ceiling  
-- **Lokasi**: Area interior rumah (kemungkinan ruang keluarga atau lorong)  
+- **Lokasi**: Kamar utama rumah  
+- **Ukuran ruangan**: 3,5 x 5 meter  
+- **Ketinggian ruangan**: > 4 meter  
 - **Material utama**: Gypsum board, rangka hollow, lampu LED tanam (downlight)  
 - **Waktu pengerjaan**: Selesai dalam waktu cepat & rapi
 
@@ -31,10 +35,11 @@ Pada salah satu proyek renovasi rumah terbaru kami, tim **Maunguli** dipercaya u
 ## 📸 Dokumentasi
 
 ![Plafon Terpasang](https://cdn.maunguli.com/cdn?src=images/posts/pemasngan-plafon-minimalis.jpeg)  
-*Pemasangan plafon di lorong rumah dengan hasil akhir bersih dan elegan.*
+*Plafon di kamar utama setelah selesai dipasang dengan hasil akhir bersih dan elegan.*
 
 ![Proses Pemasangan](https://cdn.maunguli.com/cdn?src=images/posts/Pemasangan-plafon.jpeg)  
-*Proses pemasangan menggunakan perancah bambu untuk menjangkau ketinggian secara aman.*
+*Karena tinggi bangunan mencapai lebih dari 4 meter, kami menggunakan perancah bambu untuk proses pemasangan secara aman dan stabil.*
+
 
 
 ## 💬 Kenapa Pilih Maunguli?
