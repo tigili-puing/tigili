@@ -9,8 +9,6 @@ image:
   url: https://cdn.maunguli.com/cdn?src=images/posts/pemasngan-plafon-minimalis.jpeg&format=webp
   alt: Plafon drop ceiling
 ---
-# ✨ Proyek Renovasi: Pemasangan Plafon Modern Minimalis di Kamar Utama
-
 Pada salah satu proyek renovasi rumah terbaru kami, tim **Maunguli** dipercaya untuk melakukan pemasangan plafon di kamar utama rumah klien. Proyek ini mengusung konsep **plafon modern minimalis** yang memberikan kesan bersih, rapi, dan elegan, serta memaksimalkan pencahayaan ruangan.
 
 Kamar ini memiliki ukuran **3,5 x 5 meter** dengan ketinggian bangunan lebih dari **4 meter**. Oleh karena itu, kami menggunakan **perancah bambu** sebagai solusi efektif untuk menjangkau area kerja di ketinggian secara aman dan efisien.
