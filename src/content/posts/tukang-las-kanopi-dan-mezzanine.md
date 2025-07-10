@@ -1,13 +1,17 @@
 ---
-title:  Jasa Tukang Las Kanopi & Mezzanin Anak
-description: Dalam dunia konstruksi rumah tinggal maupun bangunan komersial, penggunaan **besi hollow** sebagai material utama kini semakin populer. Selain kuat dan tahan lama, tampilannya pun bisa disesuaikan
+title: Jasa Tukang Las Kanopi & Mezzanin Anak
 pubDate: 2025-07-05
+description: Dalam dunia konstruksi rumah tinggal maupun bangunan komersial,
+  penggunaan **besi hollow** sebagai material utama kini semakin populer. Selain
+  kuat dan tahan lama, tampilannya pun bisa disesuaikan
+author: Tim Maunguli
 category: Pengelasan
 image:
-  url: " https://golang-p.web.app/static/images/post/tukang-besi/pemasangan-rangka-atap.webp"
-  alt: "Pemasangan rangka kanopi"
-
-youtubeId: "uOlLl1FquWY"
+  url: "
+    https://golang-p.web.app/static/images/post/tukang-besi/pemasangan-rangka-a\
+    tap.webp"
+  alt: Pemasangan rangka kanopi
+youtubeId: uOlLl1FquWY
 ---
 
 
