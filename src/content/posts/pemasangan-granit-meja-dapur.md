@@ -1,18 +1,20 @@
 ---
 title: Pemasangan Granit Meja Dapur dan Area Lainnya
-description: Mau pasang granit untuk dapur atau area lain? Simak keunggulan dan proses pemasangannya di artikel ini.
 pubDate: 2025-07-05
-category: Granite
+description: Mau pasang granit untuk dapur atau area lain? Simak keunggulan dan
+  proses pemasangannya di artikel ini.
+author: Dhikrama
 tags:
   - granit
   - meja dapur
   - jasa bangunan
   - tukang bangunan
   - maunguli
+category: Granite
 image:
-  url: "https://golang-p.web.app/static/images/post/granite/progres-pasang-granit.webp"
-  alt: ""
-youtubeId: "_IXXYrGlgWE"
+  url: https://cdn.maunguli.com/cdn?src=images/posts/dapur-modern-minimali.png
+  alt: Dapur modern dengan granit
+youtubeId: _IXXYrGlgWE
 ---
 
 
