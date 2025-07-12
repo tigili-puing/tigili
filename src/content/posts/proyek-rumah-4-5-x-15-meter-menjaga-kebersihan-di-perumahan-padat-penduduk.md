@@ -7,13 +7,13 @@ description: Kami baru saja memulai proyek pembangunan rumah berukuran **4,5 x
 author: Tim Maunguli
 category: exterior
 image:
-  url: https://cdn.maunguli.com/cdn?src=images/posts/tumpukan-pasir.jpeg&format=webp
+  url: /img/tumpukan-pasir.jpeg
   alt: Tumpukan Pasir
 youtubeId: 5mtwwemvbHI
 ---
 Kami baru saja memulai proyek pembangunan rumah berukuran **4,5 x 15 meter** di sebuah **perumahan padat penduduk**. Lokasi ini memiliki akses jalan terbatas dan kedekatan antar rumah yang cukup rapat, sehingga menjaga kebersihan dan ketertiban lingkungan menjadi hal yang sangat penting.
 
-![Lokasi Proyek & Material Masuk](./lokasi-pasir.webp)
+![Lokasi Proyek & Material Masuk](./tumpukan-pasir.jpeg)
 
 ## 🧱 Tantangan: Penanganan Material di Lingkungan Padat
 
