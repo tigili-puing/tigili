@@ -1,5 +1,5 @@
 ---
-title: "Proyek Rumah 4,5 x 15 Meter: Menjaga Kebersihan di Perumahan Padat Penduduk"
+title: Menjaga Kebersihan di Perumahan Padat Penduduk
 pubDate: 2025-07-12T12:13:31.189Z
 description: Kami baru saja memulai proyek pembangunan rumah berukuran **4,5 x
   15 meter** di sebuah **perumahan padat penduduk**. Lokasi ini memiliki akses
