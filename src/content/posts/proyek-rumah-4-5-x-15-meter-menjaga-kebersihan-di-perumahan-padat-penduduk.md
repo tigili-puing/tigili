@@ -7,7 +7,7 @@ description: Kami baru saja memulai proyek pembangunan rumah berukuran **4,5 x
 author: Tim Maunguli
 category: exterior
 image:
-  url: https://cdn.maunguli.com/cdn?src=images/posts/tumpukan-pasir.jpeg
+  url: /img/tumpukan-pasir.jpeg
   alt: Tumpukan Pasir
 youtubeId: 5mtwwemvbHI
 ---
