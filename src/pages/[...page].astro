@@ -4,6 +4,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import type { Page, GetStaticPathsOptions } from "astro"; // <-- TAMBAHKAN GetStaticPathsOptions DI SINI
 import Layout from "../layouts/Layout.astro";
+import CDNImages from "../components/CDNImages.astro";
 
 // --- BAGIAN LOGIKA PAGINASI ---
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) { // <-- TERAPKAN TIPE DI SINI
@@ -42,9 +43,12 @@ const { page } = Astro.props;
             <article class="bg-card rounded-xl border border-foreground/10 overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               {post.data.image && (
                 <a href={`/posts/${post.slug}/`} class="block">
-                  <img
+                  <CDNImages
                     src={post.data.image.url}
                     alt={post.data.image.alt}
+                    widht={800}
+                    height={400}
+                    layout="constrained"
                     class="w-full h-48 object-cover"
                   />
                 </a>

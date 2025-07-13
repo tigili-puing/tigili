@@ -6,6 +6,9 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 
+import mdx from '@astrojs/mdx';
+
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://blog.maunguli.com',
@@ -19,7 +22,8 @@ export default defineConfig({
    // Daftarkan semua domain eksternal yang Anda percaya di sini
    domains: [
      "firebasestorage.googleapis.com", // Untuk gambar dari Firebase Storage
-     "golang-p.web.app"                // Untuk gambar dari Cloud Run Anda
+     "golang-p.web.app",
+     "cdn.maunguli.com"                // Untuk gambar dari Cloud Run Anda
    ],
  },
 
@@ -29,5 +33,5 @@ export default defineConfig({
     }
   },
 
-  integrations: [sitemap()],
+  integrations: [sitemap(), mdx()],
 });
