@@ -3,8 +3,8 @@
 
 import { getCollection, type CollectionEntry } from 'astro:content';
 import type { Page, GetStaticPathsOptions } from "astro";
-import Layout from '../../../layouts/Layout.astro'; 
-import PostCard from '../../../components/PostCard.astro';
+import Layout from '../../../../layouts/BaseLayout.astro'; 
+import PostCard from '../../../../components/PostCard.astro';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const allPosts = await getCollection('posts', ({data}) => data.pubDate <= new Date());

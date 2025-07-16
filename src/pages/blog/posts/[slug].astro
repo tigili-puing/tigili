@@ -1,13 +1,13 @@
 ---
 // src/pages/posts/[slug].astro (VERSI LENGKAP DENGAN SEMUA FITUR + SCHEMA)
 import { getCollection, type CollectionEntry } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
-import TableOfContents from "../../components/TableOfContents.astro";
-import SocialShare from "../../components/SocialShare.astro";
-import FacebookComments from "../../components/FacebookComments.astro";
+import Layout from "../../../layouts/BaseLayout.astro";
+import TableOfContents from "../../../components/TableOfContents.astro";
+import SocialShare from "../../../components/SocialShare.astro";
+import FacebookComments from "../../../components/FacebookComments.astro";
 import { YouTube } from "@astro-community/astro-embed-youtube";
-import CallToAction from "../../components/CallToAction.astro";
-import Prose from "../../components/Prose.astro";
+import CallToAction from "../../../components/CallToAction.astro";
+import Prose from "../../../components/Prose.astro";
 
 // --- Mendapatkan semua path untuk halaman ---
 export async function getStaticPaths() {
