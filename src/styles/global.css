@@ -4,22 +4,29 @@
 /* LANGKAH 1: DEFINISIKAN CUSTOM PROPERTIES (VARIABEL CSS)       */
 /* Bagian ini tetap sama dan sudah benar.                        */
 /* ------------------------------------------------------------- */
+/* ------------------------------------------------------------- */
+/* VARIABEL WARNA BARU UNTUK BRAND TIGILI                        */
+/* ------------------------------------------------------------- */
 :root {
-  --color-primary-val: #C2410C;
-  --color-secondary-val: #F2A30F;
-  --color-background-val: #ffffff;
-  --color-foreground-val: #402E32;
-  --color-muted-foreground-val:  #475569;
+  --color-primary-val: #000000; /* Hitam dominan */
+  --color-primary-darker-val: #1a1a1a; /* Hitam agak terang */
+  --color-secondary-val: #FFD500; /* Kuning terang */
+  --color-background-val: #F9FAFB; /* Abu terang, bersih */
+  --color-foreground-val: #111111; /* Teks utama */
+  --color-muted-foreground-val: #4B5563; /* Teks sekunder */
   --color-card-val: #ffffff;
 }
 
 .dark {
-  --color-background-val: #2D2325;
-  --color-primary-darker-val: #F25C05;
-  --color-foreground-val: #e2e8f0;
-  --color-muted-foreground-val: #94a3b8;
-  --color-card-val: #3a2d2f;
+  --color-primary-val: #000000;
+  --color-primary-darker-val: #1a1a1a;
+  --color-secondary-val: #FFD500;
+  --color-background-val: #1f1f1f;
+  --color-foreground-val: #f9fafb;
+  --color-muted-foreground-val: #9CA3AF;
+  --color-card-val: #2b2b2b;
 }
+
 
 /* ------------------------------------------------------------- */
 /* LANGKAH 2: IMPOR & KONFIGURASI TAILWIND                       */

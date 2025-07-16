@@ -1,0 +1,32 @@
+---
+import CDNImages from "../CDNImages.astro";
+import mobil from "../../assets/img/mobil-angkut-puing.jpeg"
+---
+
+<section class="relative min-h-screen flex items-center justify-center px-6 text-white">
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <CDNImages src={mobil} alt="Truk Buang Puing" class="w-full h-full object-cover opacity-60" />
+    <div class="absolute inset-0 bg-black opacity-40"></div> <!-- overlay gelap -->
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 max-w-4xl text-center">
+
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">
+      Solusi Cepat & Andal Untuk Buang Puing & Pindahan
+    </h1>
+    <p class="text-lg opacity-90 mb-8">
+      TIGILI siap melayani kebutuhan buang puing dan pindahan dengan truk andal, cepat, dan profesional.
+    </p>
+
+    <div class="flex flex-col md:flex-row justify-center gap-4">
+      <a href="#layanan" class="px-6 py-3 bg-white text-[var(--color-primary)] rounded-full hover:opacity-90 transition">
+        Lihat Layanan
+      </a>
+      <a href="#kontak" class="px-6 py-3 border border-white text-white rounded-full hover:bg-white hover:text-[var(--color-primary)] transition">
+        Hubungi Kami
+      </a>
+    </div>
+  </div>
+</section>

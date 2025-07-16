@@ -1,28 +1,40 @@
 ---
 // src/components/Header.astro
+import CDNImages from "./CDNImages.astro";
 import DarkModeToggle from "./DarkModeToggle.astro";
+import logo from "../assets/logo.png"
 ---
 <header class="bg-background/80 backdrop-blur-md border-b border-foreground/10 sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-4">
-            <a href="/" class="text-xl font-bold text-foreground">
-                Maunguli <span class="font-semibold text-primary">Blog</span>
-            </a>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+      
+      <!-- Logo & Brand -->
+      <a href="/" class="flex items-center gap-2 text-foreground hover:opacity-90 transition">
+        <CDNImages src={logo} alt="Logo TIGILI" class="w-8 h-8" />
+        <span class="text-xl font-bold text-primary">TIGILI</span>
+      </a>
 
-            <nav class="hidden md:flex items-center gap-6 text-muted-foreground font-semibold">
-                <a href="/category" class="hover:text-primary transition-colors">Kategori</a>
-                <a href="/search" class="hover:text-primary transition-colors">Pencarian</a>
-                <a href="/" class="text-sm hover:text-primary transition-colors">← Situs Utama</a>
-            </nav>
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-6 text-base text-muted-foreground font-medium">
+        <a href="#layanan" class="hover:text-primary transition-colors">Layanan</a>
+        <a href="#galeri" class="hover:text-primary transition-colors">Galeri</a>
+        <a href="#kontak" class="hover:text-primary transition-colors">Kontak</a>
+      </nav>
 
-            <div class="flex items-center gap-x-2 sm:gap-x-4">
-                <DarkModeToggle />
-                
-                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-foreground" aria-label="Buka menu">
-                    <svg id="menu-open-icon" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
-                    <svg id="menu-close-icon" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-                </button>
-            </div>
-        </div>
+      <!-- Tools -->
+      <div class="flex items-center gap-x-2 sm:gap-x-4">
+        <DarkModeToggle />
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-foreground hover:bg-foreground/5 transition" aria-label="Buka menu">
+          <svg id="menu-open-icon" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menu-close-icon" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
     </div>
+  </div>
 </header>

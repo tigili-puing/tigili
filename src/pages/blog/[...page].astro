@@ -3,8 +3,8 @@
 
 import { getCollection, type CollectionEntry } from "astro:content";
 import type { Page, GetStaticPathsOptions } from "astro"; // <-- TAMBAHKAN GetStaticPathsOptions DI SINI
-import Layout from "../layouts/Layout.astro";
-import CDNImages from "../components/CDNImages.astro";
+import Layout from "../../layouts/BaseLayout.astro";
+import CDNImages from "../../components/CDNImages.astro";
 
 // --- BAGIAN LOGIKA PAGINASI ---
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) { // <-- TERAPKAN TIPE DI SINI

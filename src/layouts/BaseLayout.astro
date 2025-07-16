@@ -52,23 +52,32 @@ const { title, description, image, noindex, nofollow } = Astro.props;
   </head>
   <body class="bg-background text-muted-foreground">
     <Header transition:persist />
-
     <nav
       id="mobile-menu-drawer"
-      class="fixed top-0 right-0 h-full w-72 bg-background z-40 transform translate-x-full transition-transform duration-300 ease-in-out"
+      class="fixed top-0 right-0 h-full w-72 bg-background z-40 transform translate-x-full transition-transform duration-300 ease-in-out shadow-lg"
     >
       <div
-        class="flex flex-col items-center justify-center h-full gap-8 text-2xl font-semibold"
+        class="flex flex-col h-full p-6 justify-center gap-8 text-lg font-medium text-foreground"
       >
-        <a href="/#blog" class="text-foreground">Beranda Blog</a>
-        <a href="/category" class="text-foreground">Kategori</a>
-        <a href="/search" class="text-foreground">Pencarian</a>
+        <a href="#layanan" class="hover:text-primary transition-colors"
+          >Layanan</a
+        >
+        <a href="#galeri" class="hover:text-primary transition-colors">Galeri</a
+        >
+        <a href="#kontak" class="hover:text-primary transition-colors">Kontak</a
+        >
+
+        <hr class="border-muted-foreground/20 my-6" />
+
         <a
           href="https://www.maunguli.com"
-          class="text-muted-foreground text-lg mt-8">← Kembali ke Situs Utama</a
+          class="text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
+          ← Kembali ke Situs Utama
+        </a>
       </div>
     </nav>
+
     <div
       id="mobile-menu-overlay"
       class="fixed inset-0 bg-black/50 z-30 opacity-0 invisible transition-opacity duration-300"
